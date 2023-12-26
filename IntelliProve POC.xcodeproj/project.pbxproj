@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F0596BB42B3B3EAA00B8C1DD /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = F0596BB32B3B3EAA00B8C1DD /* README.MD */; };
 		F0F6C3442B3637F5007E1469 /* IntelliProve_POCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C3432B3637F5007E1469 /* IntelliProve_POCApp.swift */; };
 		F0F6C3462B3637F5007E1469 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C3452B3637F5007E1469 /* ContentView.swift */; };
 		F0F6C3482B3637F7007E1469 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0F6C3472B3637F7007E1469 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F0596BB32B3B3EAA00B8C1DD /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 		F0F6C3402B3637F5007E1469 /* IntelliProve POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IntelliProve POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0F6C3432B3637F5007E1469 /* IntelliProve_POCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelliProve_POCApp.swift; sourceTree = "<group>"; };
 		F0F6C3452B3637F5007E1469 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				F0F6C3452B3637F5007E1469 /* ContentView.swift */,
 				F0F6C3472B3637F7007E1469 /* Assets.xcassets */,
 				F0F6C3492B3637F7007E1469 /* Preview Content */,
+				F0596BB32B3B3EAA00B8C1DD /* README.MD */,
 			);
 			path = "IntelliProve POC";
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0596BB42B3B3EAA00B8C1DD /* README.MD in Resources */,
 				F0F6C34B2B3637F7007E1469 /* Preview Assets.xcassets in Resources */,
 				F0F6C3482B3637F7007E1469 /* Assets.xcassets in Resources */,
 			);
@@ -275,11 +279,14 @@
 				DEVELOPMENT_TEAM = 7J8C4JM5V4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required to execute the measurement.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone access is required to execute the measurement.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,11 +311,14 @@
 				DEVELOPMENT_TEAM = 7J8C4JM5V4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required to execute the measurement.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone access is required to execute the measurement.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
