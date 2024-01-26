@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F01E48EF2B64711C00E75E35 /* IntelliWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E48EE2B64711C00E75E35 /* IntelliWebView.swift */; };
 		F0596BB42B3B3EAA00B8C1DD /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = F0596BB32B3B3EAA00B8C1DD /* README.MD */; };
 		F0F6C3442B3637F5007E1469 /* IntelliProve_POCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C3432B3637F5007E1469 /* IntelliProve_POCApp.swift */; };
 		F0F6C3462B3637F5007E1469 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C3452B3637F5007E1469 /* ContentView.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F01E48EE2B64711C00E75E35 /* IntelliWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelliWebView.swift; sourceTree = "<group>"; };
 		F0596BB32B3B3EAA00B8C1DD /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 		F0F6C3402B3637F5007E1469 /* IntelliProve POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IntelliProve POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0F6C3432B3637F5007E1469 /* IntelliProve_POCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelliProve_POCApp.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				F0F6C3472B3637F7007E1469 /* Assets.xcassets */,
 				F0F6C3492B3637F7007E1469 /* Preview Content */,
 				F0596BB32B3B3EAA00B8C1DD /* README.MD */,
+				F01E48EE2B64711C00E75E35 /* IntelliWebView.swift */,
 			);
 			path = "IntelliProve POC";
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0F6C3462B3637F5007E1469 /* ContentView.swift in Sources */,
+				F01E48EF2B64711C00E75E35 /* IntelliWebView.swift in Sources */,
 				F0F6C3442B3637F5007E1469 /* IntelliProve_POCApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,7 +205,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -258,7 +262,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -286,7 +290,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,7 +321,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
