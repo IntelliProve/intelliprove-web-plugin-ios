@@ -15,10 +15,14 @@ import AVKit
     }
 }
 
-struct IntelliWebView: View {
-    let url: String
+public struct IntelliWebView: View {
+    public let url: String
 
-    var body: some View {
+    public init(url: String) {
+        self.url = url
+    }
+
+    public var body: some View {
         WebView(url: url)
         //.edgesIgnoringSafeArea(.all) // Comment this line to pin to safeAreaInsets (content does not grow under camera bezel)
     }
@@ -36,13 +40,13 @@ struct WebView: UIViewRepresentable {
         configuration.allowsInlineMediaPlayback = true
 
         // Disable zoom - TODO: Dries - perhaps this should be put in the actual WebApp's code instead?
-        let disableZoomJS = [
-            "var meta = document.createElement('meta');",
-            "meta.name = 'viewport';",
-            "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';",
-            "var head = document.getElementsByTagName('head')[0];",
-            "head.appendChild(meta);"
-        ].joined(separator: "\n")
+        let disableZoomJS = """
+var meta = document.createElement('meta');
+meta.name = 'viewport';
+meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+var head = document.getElementsByTagName('head')[0];
+head.appendChild(meta);
+"""
         let disableZoomScript = WKUserScript(
             source: disableZoomJS,
             injectionTime: .atDocumentEnd,
