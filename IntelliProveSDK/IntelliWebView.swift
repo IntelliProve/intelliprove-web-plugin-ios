@@ -11,27 +11,37 @@ import AVKit
 
 @objc public class IntelliWebViewFactory: NSObject {
     @objc public static func newWebView(urlString: String) -> UIViewController {
-        return UIHostingController(rootView: IntelliWebView(url: urlString))
+        return IntelliWebViewController(url: urlString)
     }
 }
 
-public struct IntelliWebView: View {
-    public let url: String
+public struct IntelliWebView: UIViewControllerRepresentable {
+    private let url: String
 
     public init(url: String) {
         self.url = url
     }
 
-    public var body: some View {
-        WebView(url: url)
-        //.edgesIgnoringSafeArea(.all) // Comment this line to pin to safeAreaInsets (content does not grow under camera bezel)
+    public func makeUIViewController(context: Context) -> some UIViewController {
+        IntelliWebViewController(url: url)
     }
+
+    public func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
 }
 
-struct WebView: UIViewRepresentable {
-    let url: String
+class IntelliWebViewController: UIViewController {
+    private let url: String
 
-    func makeUIView(context: Context) -> WKWebView {
+    init(url: String) {
+        self.url = url
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private lazy var configuration: WKWebViewConfiguration = {
         // Ensure inline camera access
         // Important to set this configuration *before* starting the WKWebView
         // Otherwise the camera is opened fullscreen anyway, instead of under the custom UI
@@ -54,10 +64,15 @@ head.appendChild(meta);
         )
         configuration.userContentController.addUserScript(disableZoomScript)
 
+        return configuration
+    }()
+
+    private lazy var webView: WKWebView = {
         // WKWebView init
         let webView = WKWebView(frame: .zero, configuration: configuration)
-        webView.navigationDelegate = context.coordinator
-        webView.uiDelegate = context.coordinator
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
         webView.contentMode = .scaleToFill
 
         // Disable overscroll and indicators
@@ -74,94 +89,102 @@ head.appendChild(meta);
         //webView.scrollView.contentInsetAdjustmentBehavior = .never
 
         return webView
-    }
+    }()
 
-    func updateUIView(_ uiView: WKWebView, context: Context) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(webView)
+
+        NSLayoutConstraint.activate([
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
         if let url = URL(string: url) {
             let request = URLRequest(url: url)
-            uiView.load(request)
-            uiView.contentMode = .scaleToFill
+            webView.load(request)
         }
     }
 
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            [.portrait, .portraitUpsideDown]
+        } else {
+            .portrait
+        }
+    }
+}
+
+extension IntelliWebViewController: WKNavigationDelegate, WKUIDelegate {
+    // This WKUIDelegate function is called from the WKWebView whenever camera or microphone access is needed.
+    // In this function, we test whether access was already given.
+    // If the user was not yet prompted before, we prompt the user through the `AVCaptureDevice.requestAccess()`.
+    // If the user *was* already prompted before, we return a `.grant` or `.deny` based on the permission status.
+    // NOTE: iOS only allows prompting the user *once* for the same permission.
+    // So if the user *denies* permission, they can only grant it by manually going to the iOS Settings.
+    func webView(
+        _ webView: WKWebView,
+        requestMediaCapturePermissionFor origin: WKSecurityOrigin,
+        initiatedByFrame frame: WKFrameInfo,
+        type: WKMediaCaptureType,
+        decisionHandler: @escaping (WKPermissionDecision) -> Void
+    ) {
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+
+            let isAuthorized: Bool = await {
+                switch type {
+                case .camera:
+                    return await self.isVideoAuthorized
+                case .microphone:
+                    return await self.isAudioAuthorized
+                case .cameraAndMicrophone:
+                    let isVideoAuthorized = await self.isVideoAuthorized
+                    let isAudioAuthorized = await self.isAudioAuthorized
+                    return isVideoAuthorized && isAudioAuthorized
+                @unknown default:
+                    return false
+                }
+            }()
+
+            decisionHandler(isAuthorized ? .grant : .deny)
+        }
     }
 
-    class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
-        var parent: WebView
+    private var isVideoAuthorized: Bool {
+        get async {
+            let videoStatus = AVCaptureDevice.authorizationStatus(for: .video)
 
-        init(_ parent: WebView) {
-            self.parent = parent
-        }
+            // Determine if the user previously authorized camera access.
+            var isVideoAuthorized = videoStatus == .authorized
 
-        // This WKUIDelegate function is called from the WKWebView whenever camera or microphone access is needed.
-        // In this function, we test whether access was already given.
-        // If the user was not yet prompted before, we prompt the user through the `AVCaptureDevice.requestAccess()`.
-        // If the user *was* already prompted before, we return a `.grant` or `.deny` based on the permission status.
-        // NOTE: iOS only allows prompting the user *once* for the same permission.
-        // So if the user *denies* permission, they can only grant it by manually going to the iOS Settings.
-        func webView(
-            _ webView: WKWebView,
-            requestMediaCapturePermissionFor origin: WKSecurityOrigin,
-            initiatedByFrame frame: WKFrameInfo,
-            type: WKMediaCaptureType,
-            decisionHandler: @escaping (WKPermissionDecision) -> Void
-        ) {
-            Task { @MainActor [weak self] in
-                guard let self else { return }
-
-                let isAuthorized: Bool = await {
-                    switch type {
-                    case .camera:
-                        return await self.isVideoAuthorized
-                    case .microphone:
-                        return await self.isAudioAuthorized
-                    case .cameraAndMicrophone:
-                        let isVideoAuthorized = await self.isVideoAuthorized
-                        let isAudioAuthorized = await self.isAudioAuthorized
-                        return isVideoAuthorized && isAudioAuthorized
-                    @unknown default:
-                        return false
-                    }
-                }()
-
-                decisionHandler(isAuthorized ? .grant : .deny)
+            // If the system hasn't determined the user's authorization status,
+            // explicitly prompt them for approval.
+            if videoStatus == .notDetermined {
+                isVideoAuthorized = await AVCaptureDevice.requestAccess(for: .video)
             }
+
+            return isVideoAuthorized
         }
+    }
 
-        private var isVideoAuthorized: Bool {
-            get async {
-                let videoStatus = AVCaptureDevice.authorizationStatus(for: .video)
+    private var isAudioAuthorized: Bool {
+        get async {
+            let audioStatus = AVCaptureDevice.authorizationStatus(for: .audio)
 
-                // Determine if the user previously authorized camera access.
-                var isVideoAuthorized = videoStatus == .authorized
+            // Determine if the user previously authorized microphone access.
+            var isAudioAuthorized = audioStatus == .authorized
 
-                // If the system hasn't determined the user's authorization status,
-                // explicitly prompt them for approval.
-                if videoStatus == .notDetermined {
-                    isVideoAuthorized = await AVCaptureDevice.requestAccess(for: .video)
-                }
-
-                return isVideoAuthorized
+            // If the system hasn't determined the user's authorization status,
+            // explicitly prompt them for approval.
+            if audioStatus == .notDetermined {
+                isAudioAuthorized = await AVCaptureDevice.requestAccess(for: .audio)
             }
-        }
 
-        private var isAudioAuthorized: Bool {
-            get async {
-                let audioStatus = AVCaptureDevice.authorizationStatus(for: .audio)
-
-                // Determine if the user previously authorized microphone access.
-                var isAudioAuthorized = audioStatus == .authorized
-
-                // If the system hasn't determined the user's authorization status,
-                // explicitly prompt them for approval.
-                if audioStatus == .notDetermined {
-                    isAudioAuthorized = await AVCaptureDevice.requestAccess(for: .audio)
-                }
-
-                return isAudioAuthorized
-            }
+            return isAudioAuthorized
         }
     }
 }
