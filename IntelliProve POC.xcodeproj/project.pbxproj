@@ -12,6 +12,7 @@
 		F01E48FC2B6478B100E75E35 /* IntelliProveSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F01E48F52B6478B100E75E35 /* IntelliProveSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F01E49012B6478E300E75E35 /* IntelliWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E48EE2B64711C00E75E35 /* IntelliWebView.swift */; };
 		F0596BB42B3B3EAA00B8C1DD /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = F0596BB32B3B3EAA00B8C1DD /* README.MD */; };
+		F0C255B82B6C1061004CFC62 /* IntelliWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C255B72B6C1061004CFC62 /* IntelliWebViewController.swift */; };
 		F0F6C3442B3637F5007E1469 /* IntelliProve_POCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C3432B3637F5007E1469 /* IntelliProve_POCApp.swift */; };
 		F0F6C3462B3637F5007E1469 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C3452B3637F5007E1469 /* ContentView.swift */; };
 		F0F6C3482B3637F7007E1469 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0F6C3472B3637F7007E1469 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		F01E48F52B6478B100E75E35 /* IntelliProveSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = IntelliProveSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01E48F72B6478B100E75E35 /* IntelliProveSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntelliProveSDK.h; sourceTree = "<group>"; };
 		F0596BB32B3B3EAA00B8C1DD /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
+		F0C255B72B6C1061004CFC62 /* IntelliWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelliWebViewController.swift; sourceTree = "<group>"; };
 		F0F6C3402B3637F5007E1469 /* IntelliProve POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IntelliProve POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0F6C3432B3637F5007E1469 /* IntelliProve_POCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelliProve_POCApp.swift; sourceTree = "<group>"; };
 		F0F6C3452B3637F5007E1469 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				F01E48EE2B64711C00E75E35 /* IntelliWebView.swift */,
+				F0C255B72B6C1061004CFC62 /* IntelliWebViewController.swift */,
 				F01E48F72B6478B100E75E35 /* IntelliProveSDK.h */,
 			);
 			path = IntelliProveSDK;
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F01E49012B6478E300E75E35 /* IntelliWebView.swift in Sources */,
+				F0C255B82B6C1061004CFC62 /* IntelliWebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

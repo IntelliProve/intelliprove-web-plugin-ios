@@ -24,6 +24,7 @@ mkdir -p ${TEMP_DIR}/iphonesimulator
 cp -R "./build/Release-iphonesimulator/${FRAMEWORK_NAME}.framework" ${TEMP_DIR}/iphonesimulator/
 
 # Create the XCFramework
+rm -rf "./output"
 xcodebuild -create-xcframework -framework "${TEMP_DIR}/iphoneos/${FRAMEWORK_NAME}.framework" -framework "${TEMP_DIR}/iphonesimulator/${FRAMEWORK_NAME}.framework" -output ${XCFRAMEWORK_OUTPUT_PATH}
 
 # Clean up
