@@ -21,7 +21,10 @@ import AVKit
 }
 
 @objc public protocol IntelliWebViewDelegate: AnyObject {
-    func didReceive(postMessage: [String: Any])
+    /// This method gets triggered when a postMessage was received from the WebView.
+    /// - Parameters:
+    ///   - postMessage: The body of the postMessage as a JSON String
+    func didReceive(postMessage: String)
 }
 
 public class IntelliWebViewController: UIViewController {
@@ -50,7 +53,7 @@ public class IntelliWebViewController: UIViewController {
         configuration.mediaTypesRequiringUserActionForPlayback = []
         configuration.allowsInlineMediaPlayback = true
 
-        // Disable zoom - TODO: Dries - perhaps this should be put in the actual WebApp's code instead?
+        // Disable zoom
         let disableZoomJS = """
 var meta = document.createElement('meta');
 meta.name = 'viewport';
@@ -70,7 +73,8 @@ head.appendChild(meta);
 
         let postMessageJS = """
 window.postMessage = function(data) {
-    window.webkit.messageHandlers.\(Constants.postMessageHandlerName).postMessage(data);
+    var jsonString = JSON.stringify(data)
+    window.webkit.messageHandlers.\(Constants.postMessageHandlerName).postMessage(jsonString);
 };
 """
         let postMessageScript = WKUserScript(
@@ -211,7 +215,7 @@ extension IntelliWebViewController: WKScriptMessageHandler {
         didReceive message: WKScriptMessage
     ) {
         guard message.name == Constants.postMessageHandlerName,
-              let messageBody = message.body as? [String: Any] else { return }
+              let messageBody = message.body as? String else { return }
 
         print("Received postMessage: \(messageBody)")
 
