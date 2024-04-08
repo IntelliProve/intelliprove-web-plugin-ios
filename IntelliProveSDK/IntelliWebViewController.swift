@@ -219,6 +219,25 @@ extension IntelliWebViewController: WKScriptMessageHandler {
 
         print("Received postMessage: \(messageBody)")
 
-        delegate?.didReceive(postMessage: messageBody)
+        let stage = stage(from: messageBody)
+
+        if stage == "dismiss" {
+            dismiss(animated: true)
+        } else {
+            delegate?.didReceive(postMessage: messageBody)
+        }
     }
+
+    private func stage(from jsonString: String) -> String? {
+        do {
+            guard let jsonData = jsonString.data(using: .utf8) else { return nil }
+            return try JSONDecoder().decode(PostMessage.self, from: jsonData).stage
+        } catch {
+            return nil
+        }
+    }
+}
+
+private struct PostMessage: Codable {
+    let stage: String
 }

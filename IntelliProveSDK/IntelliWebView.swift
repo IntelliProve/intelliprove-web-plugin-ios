@@ -26,5 +26,5 @@ public struct IntelliWebView: UIViewControllerRepresentable {
 }
 
 #Preview {
-    IntelliWebView(url: "https://plugin-dev.intelliprove.com/?action_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiIiwiY3VzdG9tZXIiOiJOZWJ1bGFlIHRlc3RpbmciLCJncm91cCI6ImFkbWluIiwibWF4X21lYXN1cmVtZW50X2NvdW50IjoxMDAwfSwibWV0YSI6e30sImV4cCI6MTcxNTA3NDIyMn0.kQvGQD_8wFzmLjgFMuft_i3nWjAxSKWx5oI_FBFEYXI")
+    IntelliWebView(url: "https://plugin-streaming-dev.intelliprove.com/?action_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiIiwiY3VzdG9tZXIiOiJERU1PLUNVU1RPTUVSLTEiLCJncm91cCI6ImFkbWluIiwibWF4X21lYXN1cmVtZW50X2NvdW50IjotMX0sIm1ldGEiOnt9LCJleHAiOjE3MTQ5MDcyMDV9.7GRRK8zIs4Q_LJ_pDSBVljd6O4K2shfMBxZCmn4UOlM")
 }
