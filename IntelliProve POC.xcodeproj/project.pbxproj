@@ -13,6 +13,13 @@
 		F01E49012B6478E300E75E35 /* IntelliWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E48EE2B64711C00E75E35 /* IntelliWebView.swift */; };
 		F0596BB42B3B3EAA00B8C1DD /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = F0596BB32B3B3EAA00B8C1DD /* README.MD */; };
 		F0C255B82B6C1061004CFC62 /* IntelliWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C255B72B6C1061004CFC62 /* IntelliWebViewController.swift */; };
+		F0F322712BC687FD00791D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F322702BC687FD00791D78 /* AppDelegate.swift */; };
+		F0F322732BC687FD00791D78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F322722BC687FD00791D78 /* SceneDelegate.swift */; };
+		F0F322752BC687FD00791D78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F322742BC687FD00791D78 /* ViewController.swift */; };
+		F0F3227A2BC687FE00791D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0F322792BC687FE00791D78 /* Assets.xcassets */; };
+		F0F3227D2BC687FE00791D78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0F3227B2BC687FE00791D78 /* LaunchScreen.storyboard */; };
+		F0F322832BC6899000791D78 /* IntelliProveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F01E48F52B6478B100E75E35 /* IntelliProveSDK.framework */; };
+		F0F322842BC6899000791D78 /* IntelliProveSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F01E48F52B6478B100E75E35 /* IntelliProveSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F0F6C3442B3637F5007E1469 /* IntelliProve_POCApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C3432B3637F5007E1469 /* IntelliProve_POCApp.swift */; };
 		F0F6C3462B3637F5007E1469 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F6C3452B3637F5007E1469 /* ContentView.swift */; };
 		F0F6C3482B3637F7007E1469 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0F6C3472B3637F7007E1469 /* Assets.xcassets */; };
@@ -21,6 +28,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		F01E48F92B6478B100E75E35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0F6C3382B3637F5007E1469 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F01E48F42B6478B100E75E35;
+			remoteInfo = IntelliProveSDK;
+		};
+		F0F322852BC6899000791D78 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F0F6C3382B3637F5007E1469 /* Project object */;
 			proxyType = 1;
@@ -41,6 +55,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F0F322872BC6899000791D78 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F0F322842BC6899000791D78 /* IntelliProveSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +74,13 @@
 		F01E48F72B6478B100E75E35 /* IntelliProveSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntelliProveSDK.h; sourceTree = "<group>"; };
 		F0596BB32B3B3EAA00B8C1DD /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 		F0C255B72B6C1061004CFC62 /* IntelliWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelliWebViewController.swift; sourceTree = "<group>"; };
+		F0F3226E2BC687FD00791D78 /* IntelliProve UIKit POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IntelliProve UIKit POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0F322702BC687FD00791D78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F0F322722BC687FD00791D78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F0F322742BC687FD00791D78 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F0F322792BC687FE00791D78 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0F3227C2BC687FE00791D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F0F3227E2BC687FE00791D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0F6C3402B3637F5007E1469 /* IntelliProve POC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IntelliProve POC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0F6C3432B3637F5007E1469 /* IntelliProve_POCApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntelliProve_POCApp.swift; sourceTree = "<group>"; };
 		F0F6C3452B3637F5007E1469 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +93,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0F3226B2BC687FD00791D78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0F322832BC6899000791D78 /* IntelliProveSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,12 +125,34 @@
 			path = IntelliProveSDK;
 			sourceTree = "<group>";
 		};
+		F0F3226F2BC687FD00791D78 /* IntelliProve UIKit POC */ = {
+			isa = PBXGroup;
+			children = (
+				F0F322702BC687FD00791D78 /* AppDelegate.swift */,
+				F0F322722BC687FD00791D78 /* SceneDelegate.swift */,
+				F0F322742BC687FD00791D78 /* ViewController.swift */,
+				F0F322792BC687FE00791D78 /* Assets.xcassets */,
+				F0F3227B2BC687FE00791D78 /* LaunchScreen.storyboard */,
+				F0F3227E2BC687FE00791D78 /* Info.plist */,
+			);
+			path = "IntelliProve UIKit POC";
+			sourceTree = "<group>";
+		};
+		F0F322822BC6899000791D78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F0F6C3372B3637F5007E1469 = {
 			isa = PBXGroup;
 			children = (
+				F0F3226F2BC687FD00791D78 /* IntelliProve UIKit POC */,
 				F0F6C3422B3637F5007E1469 /* IntelliProve POC */,
 				F01E48F62B6478B100E75E35 /* IntelliProveSDK */,
 				F0F6C3412B3637F5007E1469 /* Products */,
+				F0F322822BC6899000791D78 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +161,7 @@
 			children = (
 				F0F6C3402B3637F5007E1469 /* IntelliProve POC.app */,
 				F01E48F52B6478B100E75E35 /* IntelliProveSDK.framework */,
+				F0F3226E2BC687FD00791D78 /* IntelliProve UIKit POC.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,6 +218,25 @@
 			productReference = F01E48F52B6478B100E75E35 /* IntelliProveSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		F0F3226D2BC687FD00791D78 /* IntelliProve UIKit POC */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0F322812BC687FE00791D78 /* Build configuration list for PBXNativeTarget "IntelliProve UIKit POC" */;
+			buildPhases = (
+				F0F3226A2BC687FD00791D78 /* Sources */,
+				F0F3226B2BC687FD00791D78 /* Frameworks */,
+				F0F3226C2BC687FD00791D78 /* Resources */,
+				F0F322872BC6899000791D78 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F0F322862BC6899000791D78 /* PBXTargetDependency */,
+			);
+			name = "IntelliProve UIKit POC";
+			productName = "IntelliProve UIKit POC";
+			productReference = F0F3226E2BC687FD00791D78 /* IntelliProve UIKit POC.app */;
+			productType = "com.apple.product-type.application";
+		};
 		F0F6C33F2B3637F5007E1469 /* IntelliProve POC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0F6C34E2B3637F7007E1469 /* Build configuration list for PBXNativeTarget "IntelliProve POC" */;
@@ -187,6 +269,9 @@
 					F01E48F42B6478B100E75E35 = {
 						CreatedOnToolsVersion = 15.1;
 					};
+					F0F3226D2BC687FD00791D78 = {
+						CreatedOnToolsVersion = 15.1;
+					};
 					F0F6C33F2B3637F5007E1469 = {
 						CreatedOnToolsVersion = 15.1;
 					};
@@ -205,6 +290,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				F0F3226D2BC687FD00791D78 /* IntelliProve UIKit POC */,
 				F0F6C33F2B3637F5007E1469 /* IntelliProve POC */,
 				F01E48F42B6478B100E75E35 /* IntelliProveSDK */,
 			);
@@ -216,6 +302,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0F3226C2BC687FD00791D78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0F3227D2BC687FE00791D78 /* LaunchScreen.storyboard in Resources */,
+				F0F3227A2BC687FE00791D78 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +336,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F0F3226A2BC687FD00791D78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0F322752BC687FD00791D78 /* ViewController.swift in Sources */,
+				F0F322712BC687FD00791D78 /* AppDelegate.swift in Sources */,
+				F0F322732BC687FD00791D78 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F0F6C33C2B3637F5007E1469 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -258,7 +363,23 @@
 			target = F01E48F42B6478B100E75E35 /* IntelliProveSDK */;
 			targetProxy = F01E48F92B6478B100E75E35 /* PBXContainerItemProxy */;
 		};
+		F0F322862BC6899000791D78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F01E48F42B6478B100E75E35 /* IntelliProveSDK */;
+			targetProxy = F0F322852BC6899000791D78 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F0F3227B2BC687FE00791D78 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F0F3227C2BC687FE00791D78 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F01E48FE2B6478B100E75E35 /* Debug */ = {
@@ -328,6 +449,62 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F0F3227F2BC687FE00791D78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T6KTV2UJYM;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IntelliProve UIKit POC/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "be.driesvanmeert.IntelliProve-UIKit-POC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F0F322802BC687FE00791D78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = T6KTV2UJYM;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IntelliProve UIKit POC/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "be.driesvanmeert.IntelliProve-UIKit-POC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -522,6 +699,15 @@
 			buildConfigurations = (
 				F01E48FE2B6478B100E75E35 /* Debug */,
 				F01E48FF2B6478B100E75E35 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0F322812BC687FE00791D78 /* Build configuration list for PBXNativeTarget "IntelliProve UIKit POC" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0F3227F2BC687FE00791D78 /* Debug */,
+				F0F322802BC687FE00791D78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
