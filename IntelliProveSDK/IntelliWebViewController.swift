@@ -27,11 +27,11 @@ import AVKit
     func didReceive(postMessage: String)
 }
 
-public class IntelliWebViewController: UIViewController {
-    private enum Constants {
-        static let postMessageHandlerName = "IntelliProvePostMessageHandler"
-    }
+private enum Constants {
+    static let postMessageHandlerName = "IntelliProvePostMessageHandler"
+}
 
+public class IntelliWebViewController: UIViewController {
     private let url: String
 
     weak var delegate: IntelliWebViewDelegate?
@@ -44,6 +44,8 @@ public class IntelliWebViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    private lazy var postMessageHandler = PostMessageHandler(intelliWebViewController: self)
 
     private lazy var configuration: WKWebViewConfiguration = {
         // Ensure inline camera access
@@ -69,7 +71,8 @@ head.appendChild(meta);
         configuration.userContentController.addUserScript(disableZoomScript)
 
         // Patch PostMessage API
-        configuration.userContentController.add(self, name: Constants.postMessageHandlerName)
+        // TODO Dries: Could this be the leak?
+        configuration.userContentController.add(postMessageHandler, name: Constants.postMessageHandlerName)
 
         let postMessageJS = """
 window.postMessage = function(data) {
@@ -209,7 +212,13 @@ extension IntelliWebViewController: WKNavigationDelegate, WKUIDelegate {
     }
 }
 
-extension IntelliWebViewController: WKScriptMessageHandler {
+private class PostMessageHandler: NSObject, WKScriptMessageHandler {
+    init(intelliWebViewController: IntelliWebViewController) {
+        self.intelliWebViewController = intelliWebViewController
+    }
+
+    private weak var intelliWebViewController: IntelliWebViewController?
+
     public func userContentController(
         _ userContentController: WKUserContentController,
         didReceive message: WKScriptMessage
@@ -222,9 +231,9 @@ extension IntelliWebViewController: WKScriptMessageHandler {
         let stage = stage(from: messageBody)
 
         if stage == "dismiss" {
-            dismiss(animated: true)
+            intelliWebViewController?.dismiss(animated: true)
         } else {
-            delegate?.didReceive(postMessage: messageBody)
+            intelliWebViewController?.delegate?.didReceive(postMessage: messageBody)
         }
     }
 
