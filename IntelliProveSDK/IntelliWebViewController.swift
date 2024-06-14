@@ -16,6 +16,9 @@ import AVKit
     ) -> UIViewController {
         let webViewController = IntelliWebViewController(url: urlString)
         webViewController.delegate = delegate
+        webViewController.doDismiss = { [weak webViewController] in
+            webViewController?.dismiss(animated: true)
+        }
         return webViewController
     }
 }
@@ -31,10 +34,12 @@ private enum Constants {
     static let postMessageHandlerName = "IntelliProvePostMessageHandler"
 }
 
-public class IntelliWebViewController: UIViewController {
+class IntelliWebViewController: UIViewController {
     private let url: String
 
     weak var delegate: IntelliWebViewDelegate?
+
+    var doDismiss: (() -> Void)?
 
     init(url: String) {
         self.url = url
@@ -71,7 +76,6 @@ head.appendChild(meta);
         configuration.userContentController.addUserScript(disableZoomScript)
 
         // Patch PostMessage API
-        // TODO Dries: Could this be the leak?
         configuration.userContentController.add(postMessageHandler, name: Constants.postMessageHandlerName)
 
         let postMessageJS = """
@@ -114,7 +118,7 @@ window.postMessage = function(data) {
         return webView
     }()
 
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addSubview(webView)
@@ -132,7 +136,7 @@ window.postMessage = function(data) {
         }
     }
 
-    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .pad {
             [.portrait, .portraitUpsideDown]
         } else {
@@ -148,7 +152,7 @@ extension IntelliWebViewController: WKNavigationDelegate, WKUIDelegate {
     // If the user *was* already prompted before, we return a `.grant` or `.deny` based on the permission status.
     // NOTE: iOS only allows prompting the user *once* for the same permission.
     // So if the user *denies* permission, they can only grant it by manually going to the iOS Settings.
-    public func webView(
+    func webView(
         _ webView: WKWebView,
         requestMediaCapturePermissionFor origin: WKSecurityOrigin,
         initiatedByFrame frame: WKFrameInfo,
@@ -219,7 +223,7 @@ private class PostMessageHandler: NSObject, WKScriptMessageHandler {
 
     private weak var intelliWebViewController: IntelliWebViewController?
 
-    public func userContentController(
+    func userContentController(
         _ userContentController: WKUserContentController,
         didReceive message: WKScriptMessage
     ) {
@@ -231,7 +235,7 @@ private class PostMessageHandler: NSObject, WKScriptMessageHandler {
         let stage = stage(from: messageBody)
 
         if stage == "dismiss" {
-            intelliWebViewController?.dismiss(animated: true)
+            intelliWebViewController?.doDismiss?()
         } else {
             intelliWebViewController?.delegate?.didReceive(postMessage: messageBody)
         }
