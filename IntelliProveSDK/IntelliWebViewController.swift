@@ -181,6 +181,38 @@ extension IntelliWebViewController: WKNavigationDelegate, WKUIDelegate {
         }
     }
 
+    func webView(
+        _ webView: WKWebView,
+        decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+    ) {
+        if navigationAction.targetFrame == nil {
+            // The link tries to open in a new tab, handle it manually
+            if let url = navigationAction.request.url {
+                UIApplication.shared.open(url) // Opens in Safari
+                decisionHandler(.cancel) // Prevents WebView from handling it
+                return
+            }
+        }
+        
+        decisionHandler(.allow) // Default navigation behavior
+    }
+
+    func webView(
+        _ webView: WKWebView,
+        createWebViewWith configuration: WKWebViewConfiguration,
+        for navigationAction: WKNavigationAction,
+        windowFeatures: WKWindowFeatures
+    ) -> WKWebView? {
+        
+        // Handle `window.open()` by opening the link in Safari
+        if let url = navigationAction.request.url {
+            UIApplication.shared.open(url)
+        }
+        
+        return nil // Prevents WebView from trying to open a new window itself
+    }
+
     private var isVideoAuthorized: Bool {
         get async {
             let videoStatus = AVCaptureDevice.authorizationStatus(for: .video)
