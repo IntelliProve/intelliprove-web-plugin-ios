@@ -267,9 +267,10 @@ private class PostMessageHandler: NSObject, WKScriptMessageHandler {
         let stage = stage(from: messageBody)
 
         if stage == "dismiss" {
-            intelliWebViewController?.doDismiss?()
+            intelliWebViewController?.delegate?.didReceive(postMessage: messageBody);
+            intelliWebViewController?.doDismiss?();
         } else {
-            intelliWebViewController?.delegate?.didReceive(postMessage: messageBody)
+            intelliWebViewController?.delegate?.didReceive(postMessage: messageBody);
         }
     }
 
