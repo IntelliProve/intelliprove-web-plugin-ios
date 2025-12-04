@@ -64,7 +64,7 @@ class IntelliWebViewController: UIViewController {
         let disableZoomJS = """
 var meta = document.createElement('meta');
 meta.name = 'viewport';
-meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover';
 var head = document.getElementsByTagName('head')[0];
 head.appendChild(meta);
 """
@@ -124,8 +124,8 @@ window.postMessage = function(data) {
         view.addSubview(webView)
 
         NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            webView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -194,7 +194,7 @@ extension IntelliWebViewController: WKNavigationDelegate, WKUIDelegate {
                 return
             }
         }
-        
+
         decisionHandler(.allow) // Default navigation behavior
     }
 
@@ -204,12 +204,12 @@ extension IntelliWebViewController: WKNavigationDelegate, WKUIDelegate {
         for navigationAction: WKNavigationAction,
         windowFeatures: WKWindowFeatures
     ) -> WKWebView? {
-        
+
         // Handle `window.open()` by opening the link in Safari
         if let url = navigationAction.request.url {
             UIApplication.shared.open(url)
         }
-        
+
         return nil // Prevents WebView from trying to open a new window itself
     }
 

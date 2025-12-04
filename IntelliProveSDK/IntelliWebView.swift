@@ -50,6 +50,7 @@ public struct IntelliWebViewLink<Label: View>: View {
                 delegate: delegate,
                 doDismiss: { isPresented = false }
             )
+            .ignoresSafeArea()
         }
     }
 }
